@@ -1,17 +1,26 @@
 import { API_BASE_URL, API_ENDPOINTS } from "./api";
 import { Data } from "@/types";
 
+interface LooseObject {
+  [key: string]: any;
+}
+
 export const getSectionsdata = async (
   content: string,
-  filters?: {}
+  filters?: LooseObject
 ): Promise<Data> => {
   if (content === "units") content = "user/units";
   if (content === "subregion") content = "regions";
+
+
+
   const res = await fetch(
-    `${API_BASE_URL}/${content}?` + new URLSearchParams(filters),
+    content === "regions" && filters
+      ? `${API_BASE_URL}/${content}/${filters?.region}`
+      : `${API_BASE_URL}/${content}?` + new URLSearchParams(filters),
     {
       next: {
-        revalidate: 60,
+        revalidate: 10,
       },
     }
   );
