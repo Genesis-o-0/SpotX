@@ -1,36 +1,32 @@
-import { Container, Grid, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import RegionCard from "./RegionCard";
 import getRegionDetails from "@/utils/getRegionDetails";
+import { Data, SubRegion } from "@/types";
 
-const HorizontalList = async () => {
+const HorizontalList: React.FC<{ data: any }> = async ({ data }) => {
   const regionData: Promise<Data> = getRegionDetails(10);
   const resObj = await regionData;
+  console.log(data["North Coast"]?.data);
 
   return (
     <Container
       style={{
         margin: "auto",
-
-        padding: "15px",
+        padding: 0,
         marginTop: "20px",
         width: "90%",
       }}
     >
-      <Typography component="div" variant="h4" color="white">
-        {resObj.data.name} villages
-      </Typography>
-      <Grid
-        container
-        spacing={2}
-        justifyContent="space-between"
-        style={{ paddingTop: "20px" }}
-      >
-        {resObj.data.sub_regions?.map((region: SubRegion, index: number) => (
-          <Grid item key={index} xs={12} md={4} style={{ padding: "15px" }}>
-            <RegionCard region={region} />
-          </Grid>
+      <h3 style={{ color: "white", fontSize: "1.5rem", marginBottom: "15px" }}>
+        {" "}
+        {data["North Coast"]?.data.name} villages
+      </h3>
+
+      <div style={{ width: "100%", overflow: "auto", display: "flex" }}>
+        {data["North Coast"]?.data?.map((region: SubRegion, index: number) => (
+          <RegionCard region={region} key={index} />
         ))}
-      </Grid>
+      </div>
     </Container>
   );
 };

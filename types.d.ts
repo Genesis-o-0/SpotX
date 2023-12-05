@@ -40,3 +40,21 @@ type Response = {
   images: Image[];
   has_subRegions: null | boolean;
 };
+
+// UI Builders
+export interface Section {
+  title: string;
+  description: string;
+  content: string;
+  filters?: {
+    order_by?: string;
+    order_type?: string;
+    region?: number;
+    guest?: number;
+    // Add other filter properties as needed
+  };
+}
+
+export interface ConfigurationData {
+  data: Section[];
+}
