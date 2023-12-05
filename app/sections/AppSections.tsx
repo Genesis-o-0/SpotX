@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
-import NorthCoast from "../sections/NorthCoast";
-import Units from "./Units";
+import Units from "./UnitsSections";
+import RegionSection from "./RegionSection";
 
 const AppSections: React.FC<{ data: any }> = async ({ data }) => {
   console.log(data["Least Price Units"]?.data);
@@ -15,13 +15,13 @@ const AppSections: React.FC<{ data: any }> = async ({ data }) => {
       }}
     >
       {data["North Coast"] && (
-        <NorthCoast
+        <RegionSection
           northCoastData={data["North Coast"]["data"]["sub_regions"]}
           title={"Check our units in North Coast"}
         />
       )}
       {data["Most Popular"] && (
-        <NorthCoast
+        <RegionSection
           northCoastData={data["Most Popular"]?.data}
           title={"Most Popular Regions"}
         />

@@ -1,8 +1,7 @@
 import { getUiBuilders } from "@/utils/getUiBuilders";
 import SearchBar from "./_components/SearchBar";
 import getSectionsdata from "@/utils/getSectionsdata";
-import AppSections from "./_components/AppSections";
-import Units from "./_components/Units";
+import AppSections from "./sections/AppSections";
 
 interface LooseObject {
   [key: string]: any;
@@ -30,7 +29,6 @@ export default async function Home() {
       {ResolvedSectionsData.map((section, index) => {
         return <AppSections key={index} data={section} />;
       })}
-      
     </main>
   );
 }
