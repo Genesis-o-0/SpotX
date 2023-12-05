@@ -1,10 +1,8 @@
 import { Container } from "@mui/material";
 import Units from "./UnitsSections";
-import RegionSection from "./RegionSection";
+import RegionSection from "./RegionsSections";
 
 const AppSections: React.FC<{ data: any }> = async ({ data }) => {
-  console.log(data["Least Price Units"]?.data);
-
   return (
     <Container
       style={{
@@ -35,6 +33,17 @@ const AppSections: React.FC<{ data: any }> = async ({ data }) => {
             Least Price Units
           </h3>
           <Units unitsData={data["Least Price Units"]?.data} />
+        </>
+      )}
+
+      {data["units accepts 5 guests"] && (
+        <>
+          <h3
+            style={{ color: "white", fontSize: "1.5rem", marginBottom: "15px" }}
+          >
+            Units that accept 5 guests
+          </h3>
+          <Units unitsData={data["units accepts 5 guests"]?.data} />
         </>
       )}
     </Container>
