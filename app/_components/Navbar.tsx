@@ -8,10 +8,15 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 
 function Navbar() {
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{ backgroundColor: "#282c34" }}>
       <Container
         maxWidth="xl"
-        style={{ backgroundColor: "#282c34", width: "100%" }}
+        style={{
+          backgroundColor: "#282c34",
+          margin: "auto",
+          padding: 0,
+          width: "80%",
+        }}
       >
         <Toolbar disableGutters>
           <Grid container justifyContent="space-between" alignItems="center">
