@@ -1,7 +1,7 @@
 import { SubRegion } from "@/types";
 import RegionCard from "../_components/RegionCard";
 
-const NorthCoast: React.FC<{ northCoastData: any; title: string }> = ({
+const RegionSection: React.FC<{ northCoastData: any; title: string }> = ({
   northCoastData,
   title,
 }) => {
@@ -22,4 +22,4 @@ const NorthCoast: React.FC<{ northCoastData: any; title: string }> = ({
   );
 };
 
-export default NorthCoast;
+export default RegionSection;
