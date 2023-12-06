@@ -1,7 +1,9 @@
 type Image = {
-  id: number;
-  image: string;
-  url: string;
+  id?: number;
+  type?: string;
+  url?: string;
+  is_default?: number;
+  sizes?: string[];
 };
 
 type SubRegion = {
@@ -67,7 +69,7 @@ interface MainImage {
   model: null;
   path: string;
   type: string;
-  sizes: null;
+  sizes: string[] | null;
   created_at: string;
   updated_at: string;
   deleted_at: null;
@@ -114,7 +116,7 @@ interface Property {
   guests: null;
   bathrooms: number;
   region_id: number;
-  max_guests_number: null;
+  max_guests_number: number | null;
   is_families_only: number;
   is_visible: number;
   reservations_count: null;
@@ -132,5 +134,5 @@ interface Property {
   fav: number;
   visits: number;
   region_name: string;
-  sub_region_name: string;
+  sub_region_name: string | null;
 }
