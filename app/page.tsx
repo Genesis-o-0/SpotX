@@ -1,8 +1,9 @@
-import { getUiBuilders } from "@/utils/getUiBuilders";
+import { Suspense } from "react";
 import SearchBar from "./_components/SearchBar";
 import getSectionsdata from "@/utils/getSectionsdata";
 import AppSections from "./sections/AppSections";
-
+import Loading from "./_components/shared/Loading";
+import { getUiBuilders } from "@/utils/getUiBuilders";
 interface LooseObject {
   [key: string]: any;
 }
@@ -26,9 +27,11 @@ export default async function Home() {
   return (
     <main>
       <SearchBar />
-      {ResolvedSectionsData.map((section, index) => {
-        return <AppSections key={index} data={section} />;
-      })}
+      <Suspense fallback={<Loading />}>
+        {ResolvedSectionsData.map((section, index) => {
+          return <AppSections key={index} data={section} />;
+        })}
+      </Suspense>
     </main>
   );
 }
