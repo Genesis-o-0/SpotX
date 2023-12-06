@@ -10,9 +10,6 @@ import {
   cardTypography,
 } from "./sharedStyles/sharedStyles";
 
-
-
-
 const RegionCard: React.FC<{ region: Region }> = ({ region }) => {
   return (
     <div style={cardContainer}>
