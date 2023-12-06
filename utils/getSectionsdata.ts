@@ -9,10 +9,9 @@ export const getSectionsdata = async (
   content: string,
   filters?: LooseObject
 ): Promise<Data> => {
+  // generating URLs from API response
   if (content === "units") content = "user/units";
   if (content === "subregion") content = "regions";
-
-
 
   const res = await fetch(
     content === "regions" && filters

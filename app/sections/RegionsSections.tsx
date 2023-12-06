@@ -1,21 +1,18 @@
 import { SubRegion } from "@/types";
 import RegionCard from "../_components/RegionCard";
+import { horizontalListContainer } from "./sharedStyles/sharedStyles";
 
-const RegionSection: React.FC<{ northCoastData: any; title: string }> = ({
-  northCoastData,
+const RegionSection: React.FC<{ regionData: any; title: string }> = ({
+  regionData,
   title,
 }) => {
-
   return (
     <>
-      <h3 style={{ color: "white", fontSize: "1.5rem", marginBottom: "15px" }}>
-        {" "}
-        {title}
-      </h3>
-
-      <div style={{ width: "100%", overflow: "auto", display: "flex" }}>
-        {northCoastData?.map((region: SubRegion, index: number) => (
-          <RegionCard region={region} key={index} />
+      <h3>{title}</h3>
+      <div style={horizontalListContainer}>
+        {regionData?.map((region: SubRegion, index: number) => (
+          // keys ?!
+          <RegionCard region={region} key={region.id} />
         ))}
       </div>
     </>

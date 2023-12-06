@@ -6,11 +6,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import BedIcon from "@mui/icons-material/Bed";
+import { unitsCard } from "./sharedStyles/sharedStyles";
 
 const UnitsCard: React.FC<{ unitData: Property }> = ({ unitData }) => {
   return (
     <div>
-      <Card style={{ height: "65vh", width: "300px", margin: "16px" }}>
+      <Card style={unitsCard}>
         <CardMedia
           sx={{ height: "45%" }}
           image={
