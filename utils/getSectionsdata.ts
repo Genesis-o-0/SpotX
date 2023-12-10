@@ -13,7 +13,7 @@ export const getSectionsdata = async (
   if (contentValues.includes(content)) {
     const url = getUrl(content, filters);
     try {
-      // Axios isn't good at server side rendering
+      // Axios isn't good at server side rendering, it causes some issues
       const res = await fetch(url);
       return res.json();
     } catch (error: any) {

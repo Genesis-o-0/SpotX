@@ -1,38 +1,39 @@
 import { Container } from "@mui/material";
-import Units from "./UnitsSections";
-import RegionSection from "./RegionsSections";
+import RegionsSection from "./RegionsSections";
 import { containerStyles } from "./sharedStyles/sharedStyles";
+import UnitsSections from "./UnitsSections";
+import React from "react";
 
-const AppSections: React.FC<{ data: any }> = async ({ data }) => {
+const AppSections: React.FC<{ sectionData: any }> = async ({ sectionData }) => {
   return (
-    <Container style={containerStyles}>
-      {data["North Coast"] && (
-        <RegionSection
-          regionData={data["North Coast"]["data"]["sub_regions"]}
-          title={"Check our units in North Coast"}
-        />
-      )}
-      {data["Most Popular"] && (
-        <RegionSection
-          regionData={data["Most Popular"]?.data}
-          title={"Most Popular Regions"}
-        />
-      )}
+    <>
+      {Object.keys(sectionData).map((sectionkey) => {
+        return (
+          <Container style={containerStyles} key={crypto.randomUUID()}>
+            <React.Fragment >
+              {(sectionkey === "regions" || sectionkey === "subregion") && (
+                <RegionsSection
+                  regionData={
+                    sectionData[sectionkey]?.data?.sub_regions ||
+                    sectionData[sectionkey]?.data
+                  }
+                  title={sectionData?.title}
+                  key={crypto.randomUUID()}
+                />
+              )}
 
-      {data["Least Price Units"] && (
-        <Units
-          unitsData={data["Least Price Units"]?.data}
-          title={"Least Price Units"}
-        />
-      )}
-
-      {data["units accepts 5 guests"] && (
-        <Units
-          unitsData={data["units accepts 5 guests"]?.data}
-          title={"Units that accept 5 guests"}
-        />
-      )}
-    </Container>
+              {sectionkey === "units" && (
+                <UnitsSections
+                  unitsData={sectionData[sectionkey]?.data}
+                  title={sectionData?.title}
+                  key={crypto.randomUUID()}
+                />
+              )}
+            </React.Fragment>
+          </Container>
+        );
+      })}
+    </>
   );
 };
 

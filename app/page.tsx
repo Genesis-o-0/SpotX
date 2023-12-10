@@ -11,19 +11,22 @@ export default async function Home() {
   const sections = uiBuildersConfig.data;
   const sectionsData = sections.map(async (section) => {
     const resolved = await getSectionsdata(section.content, section.filters);
-    return { [section.title]: resolved };
+    console.log(section.title);
+
+    return { [section.content]: resolved, title: section.description };
   });
 
   const resolvedSectionsData = await Promise.all(sectionsData).then((data) => {
     return data;
   });
+  // console.log(resolvedSectionsData);
 
   return (
     <main>
       <SearchBar />
       <Suspense fallback={<Loading />}>
         {resolvedSectionsData.map((section, index) => {
-          return <AppSections key={index} data={section} />;
+          return <AppSections key={section.title} sectionData={section} />;
         })}
       </Suspense>
     </main>

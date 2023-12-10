@@ -2,7 +2,7 @@ import { SubRegion } from "@/types";
 import RegionCard from "../_components/RegionCard";
 import { horizontalListContainer } from "./sharedStyles/sharedStyles";
 
-const RegionSection: React.FC<{ regionData: any; title: string }> = ({
+const RegionsSection: React.FC<{ regionData: any; title: string }> = ({
   regionData,
   title,
 }) => {
@@ -19,4 +19,4 @@ const RegionSection: React.FC<{ regionData: any; title: string }> = ({
   );
 };
 
-export default RegionSection;
+export default RegionsSection;
