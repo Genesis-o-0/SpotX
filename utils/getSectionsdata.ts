@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "./api";
+import { API_BASE_URL, API_ENDPOINTS } from "./api";
 import { Data } from "@/types";
 interface LooseObject {
   [key: string]: any;
@@ -13,30 +13,38 @@ export const getSectionsdata = async (
   if (contentValues.includes(content)) {
     const url = getUrl(content, filters);
     try {
-      // Axios isn't good at server side rendering, it causes some issues
-      const res = await fetch(url);
-      return res.json();
+      // Nextjs documentations recommend "fetch" for fetching data in server-side
+      // Axios causes some errors in server-side
+      const response = await fetch(url);
+      return response.json();
     } catch (error: any) {
       throw new Error(`Failed to fetch Section. Error: ${error.message}`);
     }
-  } else {
-    return;
   }
 };
 export default getSectionsdata;
 
-// function to handle the UIBuilder responses and rebuild urls from them
-function getUrl(content: string, filters?: LooseObject) {
-  // constructing urls
-  if (content === "units") content = "user/units";
-  if (content === "subregion") content = "regions";
+function getUrl(content: string, filters?: LooseObject): string {
+  switch (content) {
+    case "units":
+      content = API_ENDPOINTS.UNITS;
+      break;
+    case "subregion":
+      content = API_ENDPOINTS.REGIONS;
+      break;
+  }
 
   let url = `${API_BASE_URL}/${content}`;
 
-  if (content === "regions" && filters) {
-    url += `/${filters.region}`;
-  } else if (filters) {
-    url += `?${new URLSearchParams(filters)}`;
+  if (filters) {
+    switch (content) {
+      case "regions":
+        url += `/${filters.region}`;
+        break;
+      default:
+        url += `?${new URLSearchParams(filters)}`;
+        break;
+    }
   }
 
   return url;

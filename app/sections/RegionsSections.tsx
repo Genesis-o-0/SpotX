@@ -10,8 +10,7 @@ const RegionsSection: React.FC<{ regionData: any; title: string }> = ({
     <>
       <h3>{title}</h3>
       <div style={horizontalListContainer}>
-        {regionData?.map((region: SubRegion, index: number) => (
-          // keys ?!
+        {(regionData?.sub_regions || regionData)?.map((region: SubRegion) => (
           <RegionCard region={region} key={region.id} />
         ))}
       </div>
